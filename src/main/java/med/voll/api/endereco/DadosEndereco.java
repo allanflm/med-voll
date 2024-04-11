@@ -1,33 +1,21 @@
 package med.voll.api.endereco;
 
-import jakarta.persistence.Embeddable;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
-@Embeddable
-@Getter
-@NoArgsConstructor
-@AllArgsConstructor
-public class DadosEndereco {
+public record DadosEndereco(
+        @NotBlank
+        String logradouro,
+        @NotBlank
+        String bairro,
+        @NotBlank
+        @Pattern(regexp = "\\d{8}")
+        String cep,
+        @NotBlank
+        String cidade,
+        @NotBlank
+        String uf,
 
-    private String logradouro;
-    private String bairro;
-    private String cep;
-    private String numero;
-    private String complemento;
-    private String cidade;
-    private String uf;
-
-
-    public DadosEndereco(DadosEndereco endereco) {
-        this.logradouro = endereco.logradouro;
-        this.bairro = endereco.bairro;
-        this.cep = endereco.cep;
-        this.numero = endereco.numero;
-        this.complemento = endereco.complemento;
-        this.cidade = endereco.cidade;
-        this.uf = endereco.uf;
-
-    }
+        String complemento,
+        String numero) {
 }
